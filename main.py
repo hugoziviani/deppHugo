@@ -11,7 +11,6 @@ class ProcessProjects:
         self.watchersAndProjects = {}
         self.managersAndProjects = {}
 
-
     def __getJsonData(self):
         jsonFile = pd.read_json(self.wayPath)
         self.projects = jsonFile.sort_values(by=['priority'])
@@ -72,9 +71,5 @@ class ProcessProjects:
         self.__saveWatchers()
 
 
-
-
-projects = ProcessProjects("/home/hz/Documents/deepHugo/deppHugo/source_file.json")
+projects = ProcessProjects("source_file.json")
 projects.prepareObject()
-
-
