@@ -14,10 +14,10 @@ class ProcessProjects:
     def __init__(self, path):
         self.path = path
         self.projects = None
-        self.managers = []
-        self.watchers = []
-        self.watchers_and_rojects = {}
-        self.managers_and_rojects = {}
+        self.managers = list()
+        self.watchers = list()
+        self.watchers_and_rojects = dict()
+        self.managers_and_rojects = dict()
 
     def __get_json_data(self):
         json_file = pd.read_json(self.path)
@@ -48,10 +48,10 @@ class ProcessProjects:
                     self.watchers.append(watcher)
 
         df = self.projects
-        final_manager_list = {}
+        final_manager_list = dict()
         for manager_name in self.managers:
             name = manager_name
-            projects = []
+            projects = list()
             for row in df.index:
                 if manager_name in df.iloc[row]["managers"]:
                     project_name = df.iloc[row]["name"]
@@ -60,10 +60,10 @@ class ProcessProjects:
         
         self.managers_and_rojects = final_manager_list
         
-        final_watcher_list = {}
+        final_watcher_list = dict()
         for watcher in self.watchers:
             name = watcher
-            projects = []
+            projects = list()
             for row in df.index:
                 if watcher in df.iloc[row]["watchers"]:
                     project_name = df.iloc[row]["name"]
